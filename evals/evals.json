@@ -1,0 +1,26 @@
+{
+  "skill_name": "slide-deck-preparation",
+  "evals": [
+    {
+      "id": 0,
+      "name": "url-to-5-slides-board",
+      "prompt": "I need to present the key takeaways from this article about the future of AI in enterprise (https://www.anthropic.com/news/claude-3-family) to our board of directors. Can you turn it into a 5-slide deck outline? Focus on the business value and competitive landscape.",
+      "expected_output": "A 5-slide deck outline following the template with HiTL references for each slide.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "vibe-coding-10-slides-marketing",
+      "prompt": "Here is a summary of the 'Vibe Coding' trend: Vibe coding is a software development approach where the focus is on the developer's intent and the 'feel' of the application, often powered by high-level AI instructions rather than manual syntax. It emphasizes rapid prototyping and aesthetic-first development. Turn this into a 10-slide deck outline for our marketing team to help them understand how we can position our tools for this new era.",
+      "expected_output": "A 10-slide deck outline using specific archetypes like 'The Pivot' or 'The Catalyst'.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "ssi-8-slides-investors",
+      "prompt": "We are building a new decentralized identity protocol. Based on the concept of 'Self-Sovereign Identity' (SSI), create an 8-slide pitch deck for venture capitalists. Focus on the problem of centralized data silos and how SSI solves it. Use a professional, high-stakes tone.",
+      "expected_output": "An 8-slide deck with HiTL references pointing to general SSI concepts.",
+      "files": []
+    }
+  ]
+}
