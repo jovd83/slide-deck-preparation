@@ -40,7 +40,14 @@ slide-deck-preparation/
 
 ## Installation
 
-Copy the `SKILL.md`, `assets/`, `references/`, and `sandboxes/` directory into your agent's skill registry.
+### Modern (CLI)
+Install directly via the `skills` CLI:
+```bash
+npx skills install jovd83/slide-deck-preparation
+```
+
+### Manual
+Copy the `SKILL.md`, `assets/`, and `references/` directories into your agent's skill registry.
 
 ## CI/CD Validation
 
