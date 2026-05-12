@@ -3,9 +3,9 @@ name: slide-deck-preparation
 description: "Convert raw content (URLs, articles, papers) into structured slide deck outlines. Extracts narratives, determines audience, plans chapters, assigns slide archetypes, and provides source citations."
 metadata:
   dispatcher-category: analysis
-  dispatcher-capabilities: slide-planning, narrative-extraction, content-structuring, archetype-assignment, source-citation
-  dispatcher-accepted-intents: prepare_slide_deck, outline_presentation, draft_deck_structure, extract_presentation_narrative
-  dispatcher-input-artifacts: raw_content, urls, documents, articles
+  dispatcher-capabilities: slide-planning, narrative-extraction, content-structuring, archetype-assignment, source-citation, presentation-audit, strategic-scoring, narrative-enrichment, multimedia-injection
+  dispatcher-accepted-intents: prepare_slide_deck, outline_presentation, draft_deck_structure, extract_presentation_narrative, audit_slide_deck, score_presentation, enrich_existing_slides, inject_storytelling_narrative
+  dispatcher-input-artifacts: raw_content, urls, documents, articles, existing_slide_deck_markdown
   dispatcher-output-artifacts: slide_deck_outline, structured_narrative
   dispatcher-stack-tags: presentation, planning, content-strategy
   dispatcher-risk: low
@@ -38,10 +38,20 @@ When you trigger this skill, ensure you have the raw content. If the user provid
 ## Step-by-Step Workflow
 
 1. **Ingest and Analyze:**
-   - Read all provided input materials.
+   - Read all provided input materials (raw articles, URLs, or existing slide deck markdown).
    - Identify the core thesis, the implied target audience, and the primary goal of the content.
 
-2. **Establish the Narrative & Structure:**
+2. **Presentation Audit & Scoring (Capability 1):**
+   - **Evaluate Existing Decks:** If the input is an existing deck, perform a deep audit against the **Strategy Scorecard** (0-10) using the criteria in `assets/template.md`.
+   - **Identify Friction:** Pinpoint "Narrative Gaps" (where the story breaks) and "Visual Fatigue" points (where slides are too dense).
+   - **Improvement Plan:** Generate a **Severity-Ranked Improvement Plan** focused on TED-style clarity and strategic impact. Document this in the `Revision History` section.
+
+3. **Narrative Enrichment (Capability 2):**
+   - **Inject Storytelling:** Add a "Storytelling Layer" to existing slides (e.g., introducing an overarching metaphor or a specific character journey).
+   - **Multimedia Injection:** For every slide, suggest a "Pattern Break" using the **Mandatory Live Verification** protocol (verified YouTube/Vimeo clips).
+   - **Visual Motif Alignment:** Update the `General Visual Motif` and `Avatar Hints` to ensure a consistent, premium aesthetic across the entire deck.
+
+4. **Establish the Narrative & Structure (for New or Redone Decks):**
    - **MANDATORY HEADER:** You must generate a Deck Title, Subtitle, Target Audience, Goal, Narrative Arc, Key Takeaway, Number of Slides, Target Duration, Tone, Technical Level, Description, General Narrative, General Visual Motif, General Directions, Strategy Scorecard, Sources, and Source Summary. Use the exact labels from `assets/template.md`.
    - **General Narrative:** Define *how* you will tell the story (e.g., "A journey from chaos to order," "A detective story uncovering a mystery").
    - **General Visual Motif:** Define the overarching visual theme (e.g., "A minimalist blueprint style with blueprint-blue accents"). Ensure all slide-level motifs are consistent with this.
@@ -58,12 +68,11 @@ When you trigger this skill, ensure you have the raw content. If the user provid
      - *Audience Activity* (Re-energizing tasks)
    - *Note:* For short presentations (<30m), pick only 1-2 interactive tools (Multimedia, Props, etc.) to avoid a "clown show" effect.
 
-3. **Slide Allocation:**
+5. **Slide-by-Slide Authoring & Refinement:**
    - Determine how to divide the story across the exact `[[Amount]]` of slides requested by the user.
    - Assign a specific "Slide Archetype" to each slide to dictate its visual and rhetorical structure. 
    - *Action:* Read `references/archetypes.md` to select the most appropriate archetype and follow its structural template.
 
-4. **Draft the Content:**
    - For each slide, write the Title, Subtitle, and Content (following the Archetype Template).
    - **VISUAL GUIDANCE (For Downstream Agents):**
      - **Visual Motif:** Define a specific visual metaphor or icon set (e.g., "A bridge connecting two silos").
@@ -80,13 +89,13 @@ When you trigger this skill, ensure you have the raw content. If the user provid
       - **LOGGING:** In the `Status` field, you must specify the verification method (e.g., `Verified active via browser_subagent on YYYY-MM-DD`).
       - If a link is dead, you MUST search for and verify a functional replacement before finalizing the deck.
 
-5. **The Refinement Loop (Judge & Refine):**
+6. **The Refinement Loop (Judge & Refine):**
     - **Phase 1: Self-Critique.** After the first draft, act as a "Judge." Review the deck against the Strategy Scorecard and TED Anti-Patterns. 
     - **Phase 2: Document Improvements.** Fill out the `Revision History & Improvement Proposals` section in the metadata.
     - **Phase 3: Surgical Second Pass.** Re-write specific slides or metadata sections to address the critique (e.g., "Simplifying jargon on Slide 3" or "Aligning Slide 5 motif with the global theme").
     - **Final Check:** Ensure the `V2 Status` reflects that the improvements have been integrated.
 
-6. **Self-Correction & Formatting:**
+7. **Self-Correction & Formatting:**
    - **Checklist:**
      - [ ] Does it have the exact slide count?
      - [ ] Is the Header complete (Goal, Narrative, Scorecard, Visual Motif, Sources, Summary, etc.)?
