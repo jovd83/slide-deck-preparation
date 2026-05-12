@@ -118,3 +118,10 @@ When you trigger this skill, ensure you have the raw content. If the user provid
 - **Missing or Hallucinated Info:** If the user points out a hallucination, review the `HiTL Reference & Sources` block for that slide. If you cannot find a direct quote in the source text, remove or rewrite the slide content.
 - **Wrong Number of Slides:** Ensure you explicitly count the slides during the "Slide Allocation" step to match the user's `[[Amount]]` exactly.
 - **Vague Content:** If slides feel too generic, pick a more specific archetype from `references/archetypes.md` (e.g., switch from "General Point" to "Feature vs. Benefit" or "The Root Cause").
+## Gotchas & Anti-Patterns
+- **Lazy Verification:** **NEVER** mark a link as "Verified" if you haven't actively run a browser check in the current session. Link rot is the #1 cause of "Narrative Debt" in presentations.
+- **The "Clown Show" Effect:** For presentations under 30 minutes, restrict yourself to **1-2 pattern breaks** (e.g., one video and one question). Over-indexing on props, activities, and media in a short briefing destroys authority.
+- **Scorecard Inflation:** Do not give everything a 10/10. The Strategy Scorecard is a **diagnostic tool**, not a trophy. Use it to identify where the deck is "quiet" (e.g., low Interaction score) and calibrate accordingly.
+- **Avatar Fatigue:** Unless the deck is a specific "Character Journey," avoid putting the avatar on more than 30% of the slides. In high-stakes briefings (e.g., SB-3), the avatar should only appear on transition or analysis slides.
+- **Narrative Drift:** During the "Surgical Second Pass," ensure you don't overwrite the `General Narrative` intent. Refining a single slide should never break the overarching story arc.
+- **Silent Dispatch:** Ensure every production-grade execution is logged via `%USERPROFILE%\.agents\skills\skill-dispatcher\log-dispatch.cmd`. Unlogged usage is invisible to the wallboard.
