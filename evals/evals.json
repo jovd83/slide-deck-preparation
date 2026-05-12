@@ -1,25 +1,87 @@
 {
   "skill_name": "slide-deck-preparation",
+  "version": "1.1.0",
   "evals": [
     {
-      "id": 0,
-      "name": "url-to-5-slides-board",
-      "prompt": "I need to present the key takeaways from this article about the future of AI in enterprise (https://www.anthropic.com/news/claude-3-family) to our board of directors. Can you turn it into a 5-slide deck outline? Focus on the business value and competitive landscape.",
-      "expected_output": "A 5-slide deck outline following the template with HiTL references for each slide.",
+      "id": "url-to-board-briefing",
+      "name": "URL to 5-slide board briefing",
+      "prompt": "Use $slide-deck-preparation to turn this article about enterprise AI into a 5-slide board briefing. Focus on business value, risk, and competitive implications. Cite sources and flag any unsupported claims.",
+      "expected_behaviors": [
+        "Produces exactly 5 slides",
+        "States audience, goal, narrative arc, key takeaway, assumptions, and source summary",
+        "Uses one primary archetype per slide",
+        "Includes source grounding for every substantive slide",
+        "Does not claim URL or media verification unless performed in-session"
+      ],
+      "assertions": [
+        {
+          "text": "Output contains exactly 5 slide sections labeled as slides."
+        },
+        {
+          "text": "Output includes the global brief fields Target Audience, Goal, Narrative Arc, Key Takeaway, Number of Slides, Source Summary, and Assumptions."
+        },
+        {
+          "text": "Every slide includes an Archetype and a grounding/source section."
+        },
+        {
+          "text": "Output explicitly flags missing, unsupported, or unverified source material instead of inventing citations or claiming live verification."
+        }
+      ],
       "files": []
     },
     {
-      "id": 1,
-      "name": "vibe-coding-10-slides-marketing",
-      "prompt": "Here is a summary of the 'Vibe Coding' trend: Vibe coding is a software development approach where the focus is on the developer's intent and the 'feel' of the application, often powered by high-level AI instructions rather than manual syntax. It emphasizes rapid prototyping and aesthetic-first development. Turn this into a 10-slide deck outline for our marketing team to help them understand how we can position our tools for this new era.",
-      "expected_output": "A 10-slide deck outline using specific archetypes like 'The Pivot' or 'The Catalyst'.",
+      "id": "notes-to-marketing-deck",
+      "name": "Notes to 10-slide marketing narrative",
+      "prompt": "Use $slide-deck-preparation to transform these notes on AI-assisted rapid prototyping into a 10-slide deck for a marketing leadership team. Emphasize positioning, buyer pain, and differentiated messaging.",
+      "expected_behaviors": [
+        "Produces exactly 10 slides",
+        "Uses marketing-appropriate archetypes such as The Catalyst, Feature vs. Benefit, Market Landscape, and Call to Action",
+        "Separates source-backed claims from recommendations",
+        "Includes a second-pass critique and improvements applied"
+      ],
+      "assertions": [
+        {
+          "text": "Output contains exactly 10 slide sections labeled as slides."
+        },
+        {
+          "text": "Output is tailored to a marketing leadership audience and includes positioning, buyer pain, and differentiation."
+        },
+        {
+          "text": "Every slide includes an Archetype and a clear Purpose or equivalent slide role."
+        },
+        {
+          "text": "Output distinguishes source-backed claims from recommendations, assumptions, or inferences."
+        },
+        {
+          "text": "Output includes a critique/refinement section describing improvements applied."
+        }
+      ],
       "files": []
     },
     {
-      "id": 2,
-      "name": "ssi-8-slides-investors",
-      "prompt": "We are building a new decentralized identity protocol. Based on the concept of 'Self-Sovereign Identity' (SSI), create an 8-slide pitch deck for venture capitalists. Focus on the problem of centralized data silos and how SSI solves it. Use a professional, high-stakes tone.",
-      "expected_output": "An 8-slide deck with HiTL references pointing to general SSI concepts.",
+      "id": "existing-outline-audit",
+      "name": "Existing outline audit",
+      "prompt": "Use $slide-deck-preparation to audit this existing investor deck outline. Identify narrative gaps, weak evidence, overloaded slides, and unclear calls to action. Then provide a revised 8-slide outline.",
+      "expected_behaviors": [
+        "Ranks audit findings by severity before revising",
+        "Preserves useful source-backed material",
+        "Produces a revised 8-slide outline",
+        "Avoids inventing metrics, URLs, or customer proof"
+      ],
+      "assertions": [
+        {
+          "text": "Output explicitly acknowledges that no existing investor deck outline was supplied."
+        },
+        {
+          "text": "Output avoids fabricating audit findings, metrics, URLs, customers, or source-backed claims."
+        },
+        {
+          "text": "Output provides a revised outline with exactly 8 slide sections labeled as slides."
+        },
+        {
+          "text": "Output identifies likely narrative gaps or improvement areas as assumptions or diagnostic hypotheses rather than confirmed findings."
+        }
+      ],
       "files": []
     }
   ]

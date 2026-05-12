@@ -1,0 +1,7 @@
+interface:
+  display_name: "Slide Deck Preparation"
+  short_description: "Plan grounded presentation outlines"
+  default_prompt: "Use $slide-deck-preparation to turn source material into a grounded slide deck outline with citations and speaker notes."
+
+policy:
+  allow_implicit_invocation: true

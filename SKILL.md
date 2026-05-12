@@ -1,127 +1,102 @@
 ---
 name: slide-deck-preparation
-description: "Convert raw content (URLs, articles, papers) into structured slide deck outlines. Extracts narratives, determines audience, plans chapters, assigns slide archetypes, and provides source citations."
-metadata:
-  dispatcher-category: analysis
-  dispatcher-capabilities: slide-planning, narrative-extraction, content-structuring, archetype-assignment, source-citation, presentation-audit, strategic-scoring, narrative-enrichment, multimedia-injection
-  dispatcher-accepted-intents: prepare_slide_deck, outline_presentation, draft_deck_structure, extract_presentation_narrative, audit_slide_deck, score_presentation, enrich_existing_slides, inject_storytelling_narrative
-  dispatcher-input-artifacts: raw_content, urls, documents, articles, existing_slide_deck_markdown
-  dispatcher-output-artifacts: slide_deck_outline, structured_narrative
-  dispatcher-stack-tags: presentation, planning, content-strategy
-  dispatcher-risk: low
-  dispatcher-writes-files: false
-  dispatcher-layer: execution
-  dispatcher-lifecycle: active
-  dispatcher-preferred-model: claude-sonnet-4-6
+description: Convert source material into grounded, presentation-ready slide deck outlines. Use when Codex needs to plan, audit, restructure, or enrich a presentation from URLs, articles, papers, transcripts, notes, documents, or an existing deck outline, with explicit audience framing, narrative arc, slide archetypes, speaker notes, visual guidance, and source citations.
 ---
-
-## Telemetry & Logging
-
-> [!IMPORTANT]
-> All usage of this skill must be logged via the Skill Dispatcher to ensure audit logs and wallboard analytics are accurate:
-> `%USERPROFILE%\.agents\skills\skill-dispatcher\log-dispatch.cmd --skill slide-deck-preparation --intent <intent> --model <model_name> --reason <reason>`
 
 # Slide Deck Preparation
 
-> **Author:** jovd83 | **Version:** 1.0.0 | **License:** MIT
+Use this skill to turn source material into a rigorous slide deck blueprint, not a finished PowerPoint file. The output is a structured Markdown outline that downstream agents, designers, or presentation tools can convert into slides.
 
-This skill transforms unstructured input material (articles, papers, transcripts, URLs) into a highly structured, presentation-ready slide deck outline with a specific number of slides. It ensures strong narrative flow and includes explicit source citations to prevent hallucinations and enable Human-in-the-Loop (HiTL) verification.
+## Core Contract
 
-## Prerequisites & Context
+Produce a deck outline that is:
 
-When you trigger this skill, ensure you have the raw content. If the user provides URLs or files, use the appropriate tools to read and extract the text before beginning the deck preparation.
+- Grounded in the provided sources, with citations on every substantive slide.
+- Sized to the exact slide count requested by the user, or to a clearly stated default when the user does not specify one.
+- Designed for a specific audience, goal, tone, technical level, and presentation duration.
+- Organized around one narrative arc and one key takeaway.
+- Practical for slide production, with slide archetypes, visual motifs, key labels, and speaker notes.
 
-## Step-by-Step Workflow
+Read `assets/template.md` before finalizing output. Read `references/archetypes.md` when selecting slide structures.
 
-1. **Ingest and Analyze:**
-   - Read all provided input materials (raw articles, URLs, or existing slide deck markdown).
-   - Identify the core thesis, the implied target audience, and the primary goal of the content.
+## Inputs
 
-2. **Presentation Audit & Scoring (Capability 1):**
-   - **Evaluate Existing Decks:** If the input is an existing deck, perform a deep audit against the **Strategy Scorecard** (0-10) using the criteria in `assets/template.md`.
-   - **Identify Friction:** Pinpoint "Narrative Gaps" (where the story breaks) and "Visual Fatigue" points (where slides are too dense).
-   - **Improvement Plan:** Generate a **Severity-Ranked Improvement Plan** focused on TED-style clarity and strategic impact. Document this in the `Revision History` section.
+Accept any combination of:
 
-3. **Narrative Enrichment (Capability 2):**
-   - **Inject Storytelling:** Add a "Storytelling Layer" to existing slides (e.g., introducing an overarching metaphor or a specific character journey).
-   - **Multimedia Injection:** For every slide, suggest a "Pattern Break" using the **Mandatory Live Verification** protocol (verified YouTube/Vimeo clips).
-   - **Visual Motif Alignment:** Update the `General Visual Motif` and `Avatar Hints` to ensure a consistent, premium aesthetic across the entire deck.
+- URLs, articles, papers, transcripts, notes, pasted text, or uploaded documents.
+- Existing deck outlines that need audit, restructuring, or enrichment.
+- User constraints such as slide count, audience, duration, tone, brand direction, citation style, or required sections.
 
-4. **Establish the Narrative & Structure (for New or Redone Decks):**
-   - **MANDATORY HEADER:** You must generate a Deck Title, Subtitle, Target Audience, Goal, Narrative Arc, Key Takeaway, Number of Slides, Target Duration, Tone, Technical Level, Description, General Narrative, General Visual Motif, General Directions, Strategy Scorecard, Sources, and Source Summary. Use the exact labels from `assets/template.md`.
-   - **General Narrative:** Define _how_ you will tell the story (e.g., "A journey from chaos to order," "A detective story uncovering a mystery").
-   - **General Visual Motif:** Define the overarching visual theme (e.g., "A minimalist blueprint style with blueprint-blue accents"). Ensure all slide-level motifs are consistent with this.
-   - **General Directions:** Provide guidance on avatar frequency (do not put the avatar on every single slide unless it's a character-driven story) and other delivery nuances.
-   - **Strategy Scorecard:** Assign a score (0-10) to the following elements based on the deck's objectives:
-     - _Storytelling_ (Facts structured as a narrative)
-     - _Audience Focus_ (Value and clear takeaways)
-     - _Minimalist Design_ (Uncluttered slides supporting the spoken word)
-     - _Confident Delivery_ (Notes on body language/pauses)
-     - _Single Clear Goal_ (One "North Star" message)
-     - _Multimedia/Video_ (Pattern breaks)
-     - _Interaction/Questions_ (Strategic engagement)
-     - _Physical Props_ (Tangible demonstrations)
-     - _Audience Activity_ (Re-energizing tasks)
-   - _Note:_ For short presentations (<30m), pick only 1-2 interactive tools (Multimedia, Props, etc.) to avoid a "clown show" effect.
+If critical information is missing, make a conservative assumption and state it briefly. Ask a question only when the missing choice would materially change the deck, such as investor pitch versus technical training.
 
-5. **Slide-by-Slide Authoring & Refinement:**
-   - Determine how to divide the story across the exact `[[Amount]]` of slides requested by the user.
-   - Assign a specific "Slide Archetype" to each slide to dictate its visual and rhetorical structure.
-   - _Action:_ Read `references/archetypes.md` to select the most appropriate archetype and follow its structural template.
+## Workflow
 
-   - For each slide, write the Title, Subtitle, and Content (following the Archetype Template).
-   - **VISUAL GUIDANCE (For Downstream Agents):**
-     - **Visual Motif:** Define a specific visual metaphor or icon set (e.g., "A bridge connecting two silos").
-     - **Key Labels:** List 1-5 words that MUST be rendered _on the slide_ as primary labels.
-     - **Avatar Hint:** Suggest a pose/expression (e.g., "Avatar pointing at the bridge with a smile").
-   - **EXPANDED EXPLANATION:** Every slide must include a **Detailed Logic & Speaker Notes** block.
-     - **Full Explanation:** Provide a deep-dive paragraph into the slide's core message and general idea.
-   - **CRITICAL:** Every slide must include a **References & Purpose** block.
-     - **Source:** Provide the Full Name of the Paper/Article, Author/Organization, and a Direct URL.
-     - **Purpose:** Explicitly state what the purpose of the slide is.
-   - **MULTIMEDIA RESEARCH (Mandatory Live Verification):**
-     - **DO NOT MARK AS VERIFIED WITHOUT A LIVE CHECK.** Claiming "Verified" for a link you haven't actively tested in the current session is a failure of this skill's integrity.
-     - **PROCEDURE:** For every external link (YouTube, Vimeo, etc.), you MUST use a `browser_subagent` or `read_url_content` to confirm the video is active and matches the content description.
-     - **LOGGING:** In the `Status` field, you must specify the verification method (e.g., `Verified active via browser_subagent on YYYY-MM-DD`).
-     - If a link is dead, you MUST search for and verify a functional replacement before finalizing the deck.
+1. Ingest the material.
+   - Extract the thesis, evidence, important claims, entities, constraints, and source provenance.
+   - Separate source-backed facts from inference, recommendation, and creative framing.
+   - For URLs or external media, verify only with tools that are actually available in the current environment. Do not claim live verification without performing it in the current session.
 
-6. **The Refinement Loop (Judge & Refine):**
-   - **Phase 1: Self-Critique.** After the first draft, act as a "Judge." Review the deck against the Strategy Scorecard and TED Anti-Patterns.
-   - **Phase 2: Document Improvements.** Fill out the `Revision History & Improvement Proposals` section in the metadata.
-   - **Phase 3: Surgical Second Pass.** Re-write specific slides or metadata sections to address the critique (e.g., "Simplifying jargon on Slide 3" or "Aligning Slide 5 motif with the global theme").
-   - **Final Check:** Ensure the `V2 Status` reflects that the improvements have been integrated.
+2. Define the presentation brief.
+   - Set target audience, goal, key takeaway, tone, technical level, duration, and narrative arc.
+   - If the user did not specify slide count, choose a fit-for-purpose count and explain the assumption in the header.
+   - Choose a single visual system that can carry the full deck without visual drift.
 
-7. **Self-Correction & Formatting:**
-   - **Checklist:**
-     - [ ] Does it have the exact slide count?
-     - [ ] Is the Header complete (Goal, Narrative, Scorecard, Visual Motif, Sources, Summary, etc.)?
-     - [ ] Does every slide have an Archetype, a clear Source, and a defined Purpose?
-   - **Anti-Pattern Audit (TED Guidelines):**
-     - **AVOID:** Taking too long to explain the topic; Orating vs. Talking; Self-importance; Jargon; Bullet point cramming; Lack of eye contact.
-   - Present the final output using the exact structure defined in `assets/template.md`. Do not deviate from this layout.
+3. Build the slide architecture.
+   - Allocate the exact number of slides across opening, development, proof, implications, and close.
+   - Select archetypes from `references/archetypes.md`; adapt names only when needed for clarity.
+   - Keep each slide to one primary job. Split overloaded slides instead of hiding several ideas under one title.
 
-## Examples
+4. Draft the deck outline.
+   - Use the labels and structure in `assets/template.md`.
+   - Include every required global field.
+   - For each slide, include title, subtitle, archetype, visual motif, key labels, avatar/character guidance when useful, content, detailed logic, speaker notes, and references/purpose.
+   - Keep on-slide content concise. Put nuance in speaker notes and detailed logic.
 
-**Example 1: Preparing a 5-slide deck from a blog post**
-_User Prompt:_ "Turn this article about the future of remote work into a 5-slide deck for middle management."
-_Action:_
+5. Ground and verify.
+   - Cite the source for each factual claim or cluster of claims.
+   - Mark unavailable or unverified sources honestly.
+   - If media is suggested, include verification status as one of: `Verified in current session`, `Not verified - tool unavailable`, `Not verified - user-provided candidate`, or `Search query only`.
+   - Never fabricate URLs, papers, quotes, authors, dates, statistics, or verification results.
 
-1. Analyze the article. Audience = Middle Management.
-2. Structure 5 slides: Intro, Problem, Solution, Implementation, Conclusion.
-3. Assign archetypes: 'The Big Thesis', 'Problem / Solution', 'Risk / Mitigation', 'The Roadmap', 'The Call to Action'.
-4. Output using `assets/template.md`, citing specific paragraphs from the article in the HiTL section.
+6. Judge and refine.
+   - Score the deck with the strategy scorecard in the template.
+   - Identify narrative gaps, audience mismatch, weak evidence, slide overload, jargon, and visual inconsistency.
+   - Apply a second pass before final output. Record the critique and improvements in the revision history section.
 
-## Troubleshooting
+## Existing Deck Audits
 
-- **Missing or Hallucinated Info:** If the user points out a hallucination, review the `HiTL Reference & Sources` block for that slide. If you cannot find a direct quote in the source text, remove or rewrite the slide content.
-- **Wrong Number of Slides:** Ensure you explicitly count the slides during the "Slide Allocation" step to match the user's `[[Amount]]` exactly.
-- **Vague Content:** If slides feel too generic, pick a more specific archetype from `references/archetypes.md` (e.g., switch from "General Point" to "Feature vs. Benefit" or "The Root Cause").
+When the user provides an existing deck or outline, preserve useful structure but evaluate it directly:
 
-## Gotchas & Anti-Patterns
+- Diagnose strategic fit, narrative clarity, audience value, evidence quality, design density, and delivery readiness.
+- Rank findings by severity.
+- Provide a revised outline when asked, or an improvement backlog when the user only wants review.
+- Avoid rewriting brand voice, claims, or data unless the source material supports the change.
 
-- **Lazy Verification:** **NEVER** mark a link as "Verified" if you haven't actively run a browser check in the current session. Link rot is the #1 cause of "Narrative Debt" in presentations.
-- **The "Clown Show" Effect:** For presentations under 30 minutes, restrict yourself to **1-2 pattern breaks** (e.g., one video and one question). Over-indexing on props, activities, and media in a short briefing destroys authority.
-- **Scorecard Inflation:** Do not give everything a 10/10. The Strategy Scorecard is a **diagnostic tool**, not a trophy. Use it to identify where the deck is "quiet" (e.g., low Interaction score) and calibrate accordingly.
-- **Avatar Fatigue:** Unless the deck is a specific "Character Journey," avoid putting the avatar on more than 30% of the slides. In high-stakes briefings (e.g., SB-3), the avatar should only appear on transition or analysis slides.
-- **Narrative Drift:** During the "Surgical Second Pass," ensure you don't overwrite the `General Narrative` intent. Refining a single slide should never break the overarching story arc.
-- **Silent Dispatch:** Ensure every production-grade execution is logged via `%USERPROFILE%\.agents\skills\skill-dispatcher\log-dispatch.cmd`. Unlogged usage is invisible to the wallboard.
+## Memory Model
+
+Use runtime memory only for the current deck task: source notes, slide allocation, open questions, and draft critique.
+
+Use project-local memory only when the user explicitly asks to maintain reusable deck preferences inside the project, such as approved audience personas, brand notes, recurring citation sources, or house archetype rules. Store that information in an auditable project file chosen by the user.
+
+Do not promote runtime notes to persistent memory automatically. Do not write shared cross-agent memory from this skill. If broader reuse is needed, treat shared memory as an external integration boundary and ask the user before promoting stable information.
+
+## Guardrails
+
+- Do not present a deck outline as finished design, exported slides, or legal/financial/medical advice.
+- Do not overuse interaction, props, media, or avatars. For short executive decks, one or two pattern breaks is usually enough.
+- Do not inflate scorecards. Scores are diagnostic signals, not decoration.
+- Do not cite a source that does not support the slide's claim.
+- Do not make every slide use the same layout or visual metaphor.
+- Do not bury the main conclusion until the end unless the user explicitly wants a mystery or reveal structure.
+
+## Output Rules
+
+Return only the deck outline unless the user asks for analysis, a critique, or implementation notes.
+
+Before finalizing, check:
+
+- Exact slide count matches the request.
+- Header fields are complete.
+- Every slide has one purpose, one archetype, and at least one source or an explicit note that the slide is recommendation/inference.
+- Source and media verification statuses are honest.
+- The narrative arc and visual motif remain consistent from first slide to last.

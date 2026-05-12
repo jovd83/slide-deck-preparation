@@ -1,6 +1,15 @@
-# Slide Archetypes & Templates
+# Slide Archetypes and Templates
 
-Use these archetypes to guide the rhetorical and visual layout of each slide. Every slide must follow the prescribed **Template** structure.
+Use these archetypes to guide each slide's rhetorical job and visual layout. Select the archetype that best fits the slide purpose, then adapt the template to the user's audience, evidence, and requested slide count.
+
+Selection rules:
+
+- Use one primary archetype per slide.
+- Prefer proof-oriented archetypes for claims that depend on data or external sources.
+- Prefer decision-oriented archetypes for executive, investor, board, or strategy decks.
+- Prefer instructional archetypes for training, onboarding, or operational decks.
+- Avoid repeating the same archetype more than twice in a row unless the user requests a catalog or taxonomy.
+- Treat templates as structure, not mandatory wording.
 
 ## Foundational
 1. **The Big Thesis:** The overarching claim or opening statement.

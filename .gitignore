@@ -2,7 +2,6 @@
 sandboxes/
 scratch/
 dist/
-evals/
 
 # General ignores
 .DS_Store
