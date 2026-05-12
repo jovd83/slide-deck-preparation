@@ -1,0 +1,14 @@
+# Skill-specific ignores
+sandboxes/
+scratch/
+dist/
+evals/
+
+# General ignores
+.DS_Store
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.gemini/
+.vscode/
+.idea/

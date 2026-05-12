@@ -42,20 +42,55 @@ When you trigger this skill, ensure you have the raw content. If the user provid
    - Identify the core thesis, the implied target audience, and the primary goal of the content.
 
 2. **Establish the Narrative & Structure:**
-   - Define the overarching Deck Title, Subtitle, and Description.
-   - Formulate a clear "Narrative Arc" (how the story begins, develops, and concludes).
-   - Create an Agenda divided into logical Chapters.
+   - **MANDATORY HEADER:** You must generate a Deck Title, Subtitle, Target Audience, Goal, Narrative Arc, Key Takeaway, Number of Slides, Target Duration, Tone, Technical Level, Description, General Narrative, General Visual Motif, General Directions, Strategy Scorecard, Sources, and Source Summary. Use the exact labels from `assets/template.md`.
+   - **General Narrative:** Define *how* you will tell the story (e.g., "A journey from chaos to order," "A detective story uncovering a mystery").
+   - **General Visual Motif:** Define the overarching visual theme (e.g., "A minimalist blueprint style with blueprint-blue accents"). Ensure all slide-level motifs are consistent with this.
+   - **General Directions:** Provide guidance on avatar frequency (do not put the avatar on every single slide unless it's a character-driven story) and other delivery nuances.
+   - **Strategy Scorecard:** Assign a score (0-10) to the following elements based on the deck's objectives:
+     - *Storytelling* (Facts structured as a narrative)
+     - *Audience Focus* (Value and clear takeaways)
+     - *Minimalist Design* (Uncluttered slides supporting the spoken word)
+     - *Confident Delivery* (Notes on body language/pauses)
+     - *Single Clear Goal* (One "North Star" message)
+     - *Multimedia/Video* (Pattern breaks)
+     - *Interaction/Questions* (Strategic engagement)
+     - *Physical Props* (Tangible demonstrations)
+     - *Audience Activity* (Re-energizing tasks)
+   - *Note:* For short presentations (<30m), pick only 1-2 interactive tools (Multimedia, Props, etc.) to avoid a "clown show" effect.
 
 3. **Slide Allocation:**
    - Determine how to divide the story across the exact `[[Amount]]` of slides requested by the user.
    - Assign a specific "Slide Archetype" to each slide to dictate its visual and rhetorical structure. 
-   - *Action:* Read `references/archetypes.md` to select the most appropriate archetype for each slide from the 50+ available options.
+   - *Action:* Read `references/archetypes.md` to select the most appropriate archetype and follow its structural template.
 
 4. **Draft the Content:**
-   - For each slide, write the Title, Subtitle, and Content (keep content concise, favoring bullet points over walls of text).
-   - **CRITICAL:** Populate the `HiTL Reference & Sources` block for *every single slide*. Quote the exact source text or state where the information was derived from to ensure zero hallucinations.
+   - For each slide, write the Title, Subtitle, and Content (following the Archetype Template).
+   - **VISUAL GUIDANCE (For Downstream Agents):**
+     - **Visual Motif:** Define a specific visual metaphor or icon set (e.g., "A bridge connecting two silos").
+     - **Key Labels:** List 1-5 words that MUST be rendered *on the slide* as primary labels.
+     - **Avatar Hint:** Suggest a pose/expression (e.g., "Avatar pointing at the bridge with a smile").
+   - **EXPANDED EXPLANATION:** Every slide must include a **Detailed Logic & Speaker Notes** block.
+     - **Full Explanation:** Provide a deep-dive paragraph into the slide's core message and general idea.
+    - **CRITICAL:** Every slide must include a **References & Purpose** block.
+      - **Source:** Provide the Full Name of the Paper/Article, Author/Organization, and a Direct URL.
+      - **Purpose:** Explicitly state what the purpose of the slide is.
+    - **MULTIMEDIA RESEARCH (Optional but Encouraged):**
+      - If a slide topic would benefit from a "pattern break" or a visual demonstration (e.g., a Bill Gates mosquito prop equivalent), use your search tools to find a relevant YouTube/Vimeo video or a high-quality external image.
+      - Document these in the `Recommended External Media` section using the exact labels from `assets/template.md`.
 
-5. **Format the Output:**
+5. **The Refinement Loop (Judge & Refine):**
+    - **Phase 1: Self-Critique.** After the first draft, act as a "Judge." Review the deck against the Strategy Scorecard and TED Anti-Patterns. 
+    - **Phase 2: Document Improvements.** Fill out the `Revision History & Improvement Proposals` section in the metadata.
+    - **Phase 3: Surgical Second Pass.** Re-write specific slides or metadata sections to address the critique (e.g., "Simplifying jargon on Slide 3" or "Aligning Slide 5 motif with the global theme").
+    - **Final Check:** Ensure the `V2 Status` reflects that the improvements have been integrated.
+
+6. **Self-Correction & Formatting:**
+   - **Checklist:**
+     - [ ] Does it have the exact slide count?
+     - [ ] Is the Header complete (Goal, Narrative, Scorecard, Visual Motif, Sources, Summary, etc.)?
+     - [ ] Does every slide have an Archetype, a clear Source, and a defined Purpose?
+   - **Anti-Pattern Audit (TED Guidelines):**
+     - **AVOID:** Taking too long to explain the topic; Orating vs. Talking; Self-importance; Jargon; Bullet point cramming; Lack of eye contact.
    - Present the final output using the exact structure defined in `assets/template.md`. Do not deviate from this layout.
 
 ## Examples
