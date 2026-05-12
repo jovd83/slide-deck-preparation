@@ -18,7 +18,7 @@ metadata:
 ## Telemetry & Logging
 > [!IMPORTANT]
 > All usage of this skill must be logged via the Skill Dispatcher to ensure audit logs and wallboard analytics are accurate:
-> `./log-dispatch.cmd --skill slide-deck-preparation --intent <intent> --model <model_name> --reason <reason>` (or `./log-dispatch.sh` on Linux)
+> `%USERPROFILE%\.agents\skills\skill-dispatcher\log-dispatch.cmd --skill slide-deck-preparation --intent <intent> --model <model_name> --reason <reason>`
 
 # Slide Deck Preparation
 
