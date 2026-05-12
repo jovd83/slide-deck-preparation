@@ -67,7 +67,7 @@
 
 ### Recommended External Media (Optional)
 *   **Media Link:** [URL to relevant YouTube/Vimeo clip or high-res image]
-*   **Status:** [Mandatory: Verified active via real-time search on YYYY-MM-DD]
+*   **Status:** [Mandatory: Verified active via (browser_subagent/read_url_content) on YYYY-MM-DD]
 *   **Media Description:** [Why this specific media is useful for explaining this slide's topic]
 *   **Search Query:** [The query used to find this media, or recommended for further research]
 

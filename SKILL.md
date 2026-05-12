@@ -74,11 +74,11 @@ When you trigger this skill, ensure you have the raw content. If the user provid
     - **CRITICAL:** Every slide must include a **References & Purpose** block.
       - **Source:** Provide the Full Name of the Paper/Article, Author/Organization, and a Direct URL.
       - **Purpose:** Explicitly state what the purpose of the slide is.
-    - **MULTIMEDIA RESEARCH (Mandatory Real-Time Search):**
-      - Do NOT rely on training knowledge or static lists for video links. Link rot is frequent.
-      - You MUST use your search tools (e.g., `search_web`) to find and verify active YouTube/Vimeo links or high-quality external images.
-      - If a slide topic would benefit from a "pattern break" or a visual demonstration, search for the most recent and relevant clip.
-      - Document these in the `Recommended External Media` section using the exact labels from `assets/template.md`.
+    - **MULTIMEDIA RESEARCH (Mandatory Live Verification):**
+      - **DO NOT MARK AS VERIFIED WITHOUT A LIVE CHECK.** Claiming "Verified" for a link you haven't actively tested in the current session is a failure of this skill's integrity.
+      - **PROCEDURE:** For every external link (YouTube, Vimeo, etc.), you MUST use a `browser_subagent` or `read_url_content` to confirm the video is active and matches the content description.
+      - **LOGGING:** In the `Status` field, you must specify the verification method (e.g., `Verified active via browser_subagent on YYYY-MM-DD`).
+      - If a link is dead, you MUST search for and verify a functional replacement before finalizing the deck.
 
 5. **The Refinement Loop (Judge & Refine):**
     - **Phase 1: Self-Critique.** After the first draft, act as a "Judge." Review the deck against the Strategy Scorecard and TED Anti-Patterns. 

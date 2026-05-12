@@ -28,6 +28,8 @@ def grade_deck(file_path):
     if "### Recommended External Media" in content:
         if "Status:" not in content and "**Status:**" not in content:
             issues.append("Missing External Media Verification Status")
+        elif "browser_subagent" not in content and "read_url_content" not in content:
+            issues.append("External Media Status missing verification method (browser_subagent/read_url_content)")
 
     if "http" not in content:
         issues.append("No verifiable URLs found in sources.")
