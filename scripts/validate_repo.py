@@ -25,6 +25,10 @@ def grade_deck(file_path):
         if elem not in content:
             issues.append(f"Missing Scorecard Element: {elem}")
 
+    if "### Recommended External Media" in content:
+        if "Status:" not in content and "**Status:**" not in content:
+            issues.append("Missing External Media Verification Status")
+
     if "http" not in content:
         issues.append("No verifiable URLs found in sources.")
 

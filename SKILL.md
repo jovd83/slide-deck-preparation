@@ -74,8 +74,10 @@ When you trigger this skill, ensure you have the raw content. If the user provid
     - **CRITICAL:** Every slide must include a **References & Purpose** block.
       - **Source:** Provide the Full Name of the Paper/Article, Author/Organization, and a Direct URL.
       - **Purpose:** Explicitly state what the purpose of the slide is.
-    - **MULTIMEDIA RESEARCH (Optional but Encouraged):**
-      - If a slide topic would benefit from a "pattern break" or a visual demonstration (e.g., a Bill Gates mosquito prop equivalent), use your search tools to find a relevant YouTube/Vimeo video or a high-quality external image.
+    - **MULTIMEDIA RESEARCH (Mandatory Real-Time Search):**
+      - Do NOT rely on training knowledge or static lists for video links. Link rot is frequent.
+      - You MUST use your search tools (e.g., `search_web`) to find and verify active YouTube/Vimeo links or high-quality external images.
+      - If a slide topic would benefit from a "pattern break" or a visual demonstration, search for the most recent and relevant clip.
       - Document these in the `Recommended External Media` section using the exact labels from `assets/template.md`.
 
 5. **The Refinement Loop (Judge & Refine):**

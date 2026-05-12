@@ -32,26 +32,25 @@ slide-deck-preparation/
 
 ## Key Features
 
-*   **Strategy Scorecard**: Calibrate storytelling, minimalism, and audience focus using a 0-10 scoring system.
-*   **Refinement Loop**: Mandatory "Judge & Refine" phase for surgical second-pass improvements.
-*   **Visual Motif Consistency**: Global motif definitions that provide a cohesive creative brief for downstream image agents.
-*   **Verifiable Groundedness**: Every slide requires direct URL citations to prevent hallucinations.
-*   **TED Anti-Pattern Audit**: Automated guardrails to avoid common presentation mistakes.
+- **Strategy Scorecard**: Calibrate storytelling, minimalism, and audience focus using a 0-10 scoring system.
+- **Refinement Loop**: Mandatory "Judge & Refine" phase for surgical second-pass improvements.
+- **Visual Motif Consistency**: Global motif definitions that provide a cohesive creative brief for downstream image agents.
+- **Verifiable Groundedness**: Every slide requires direct URL citations to prevent hallucinations.
+- **Anti-Pattern Audit**: Automated guardrails to avoid common presentation mistakes.
 
 ## Installation
 
 ### Modern (CLI)
+
 Install directly via the `skills` CLI:
+
 ```bash
 npx skills install jovd83/slide-deck-preparation
 ```
 
 ### Manual
+
 Copy the `SKILL.md`, `assets/`, and `references/` directories into your agent's skill registry.
-
-## CI/CD Validation
-
-This repository uses GitHub Actions to ensure 100% template compliance. The `scripts/validate_repo.py` tool programmatically audits all sandboxes for metadata density and narrative logic.
 
 ## License
 
